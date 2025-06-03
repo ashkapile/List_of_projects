@@ -12,8 +12,6 @@ url = os.getenv("JIRA_URL")
 
 API_TOKEN = os.getenv("JIRA_API_TOKEN")
 
-auth = HTTPBasicAuth(email, API_TOKEN)
-
 if not email:
     raise ValueError("Missing email in .env")
 
@@ -22,6 +20,8 @@ if not url:
 
 if not API_TOKEN:
     raise ValueError("Missing API Token in .env")
+
+auth = HTTPBasicAuth(email, API_TOKEN)
 
 headers = {
     "Accept": "application/json"

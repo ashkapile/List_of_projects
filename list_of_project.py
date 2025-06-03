@@ -6,13 +6,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-email = "ashvinikapile123@gmail.com"
+email = os.getenv("JIRA_EMAIL")
 
-url = "https://ashvinikapile123.atlassian.net/rest/agile/1.0/board/1/issue"
+url = os.getenv("JIRA_URL")
 
 API_TOKEN = os.getenv("JIRA_API_TOKEN")
 
 auth = HTTPBasicAuth(email, API_TOKEN)
+
+if not email:
+    raise ValueError("Missing email in .env")
+
+if not url:
+    raise ValueError("Missing url in .env")
 
 if not API_TOKEN:
     raise ValueError("Missing API Token in .env")
